@@ -1,7 +1,7 @@
 def calcular_descuento(subtotal_bruto: float, tipo_cliente: str) -> float:
     """Calcula el monto de descuento según el tipo de cliente y el subtotal."""
     tipo_cliente = tipo_cliente.upper().strip()
-    PORCENTAJE_VIP_ALTO: float = 0.50
+    PORCENTAJE_VIP_ALTO: float = 0.15
     PORCENTAJE_VIP_BAJO: float = 0.10
     PORCENTAJE_REG_ALTO: float = 0.08
     PORCENTAJE_REG_BAJO: float = 0.03
@@ -22,7 +22,7 @@ def calcular_descuento(subtotal_bruto: float, tipo_cliente: str) -> float:
 
 def procesar_factura(subtotal_bruto: float, tipo_cliente: str) -> dict:
     """Integra los cálculos de descuento, IGV y total a pagar."""
-    TASA_IGV: float = 0.18
+    TASA_IGV: float = 0.50
 
     monto_descuento: float = calcular_descuento(subtotal_bruto, tipo_cliente)
     subtotal_con_descuento: float = subtotal_bruto - monto_descuento
