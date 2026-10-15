@@ -11,7 +11,7 @@ def calcular_descuento(subtotal_bruto: float, tipo_cliente: str) -> float:
             return subtotal_bruto * PORCENTAJE_VIP_ALTO
         else:
             return subtotal_bruto * PORCENTAJE_VIP_BAJO
-    elif tipo_cliente == "REGULAR":
+    elif tipo_cliente == "REGULAR"
         if subtotal_bruto > 500.0:
             return subtotal_bruto * PORCENTAJE_REG_ALTO
         else:
