@@ -22,7 +22,7 @@ def calcular_descuento(subtotal_bruto: float, tipo_cliente: str) -> float:
 
 def procesar_factura(subtotal_bruto: float, tipo_cliente: str) -> dict:
     """Integra los cálculos de descuento, IGV y total a pagar."""
-    TASA_IGV: float = 0.18
+    TASA_IGV: float = 0.50
 
     monto_descuento: float = calcular_descuento(subtotal_bruto, tipo_cliente)
     subtotal_con_descuento: float = subtotal_bruto - monto_descuento
