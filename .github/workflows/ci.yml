@@ -64,3 +64,17 @@ jobs:
           name: reporte-mantenimiento-sistema
           path: reporte_mantenimiento.txt
   
+  # a. Ejecución del script propio
+      - name: Ejecutar script de auditoría
+        run: python scripts/auditoria_sistema.py
+
+    # b. Subida del reporte como artefacto descargable
+      - name: Subir reporte de auditoría
+        uses: actions/upload-artifact@v4
+        with:
+        name: reporte-auditoria-calidad
+        path: reporte_auditoria.txt
+
+    # c. Publicación del resumen en GitHub (GITHUB_STEP_SUMMARY)
+      - name: Publicar resumen en GitHub Step Summary
+        run: cat reporte_auditoria.txt >> $GITHUB_STEP_SUMMARY
