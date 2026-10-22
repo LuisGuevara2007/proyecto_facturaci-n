@@ -33,6 +33,8 @@ jobs:
           pytest tests/test_facturacion_pytest.py
 
       - name: 6. Ejecutar script personalizado de auditoria
+        env:
+          PYTHONPATH: .
         run: |
           python scripts/auditoria_sistema.py
 
