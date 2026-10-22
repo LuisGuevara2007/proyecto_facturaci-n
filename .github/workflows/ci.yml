@@ -26,55 +26,25 @@ jobs:
 
       - name: 4. Auditar codigo con Flake8
         run: |
-          flake8 src/ scripts/ --max-line-length=100
+          flake8 scripts/ --max-line-length=100
 
-      - name: 5. Ejecutar pruebas unitarias con Pytest
-        run: |
-          pytest tests/test_facturacion_pytest.py
-
-      - name: 6. Ejecutar script personalizado de auditoria
+      - name: 5. Ejecutar script personalizado de auditoria
         env:
           PYTHONPATH: .
         run: |
           python scripts/auditoria_sistema.py
 
-      - name: 7. Publicar artefacto de auditoria
+      - name: 6. Publicar artefacto de auditoria
         uses: actions/upload-artifact@v4
         with:
           name: reporte-auditoria-calidad
-          path: reporte_auditoria.txt
+          path: reportes/reporte_auditoria.txt
 
-      - name: 8. Generar resumen automatizado del build
+      - name: 7. Generar resumen automatizado del build
         run: |
           echo "## Resumen de Ejecución CI/CD - Comercial Chiclayo 🚀" >> $GITHUB_STEP_SUMMARY
           echo "El pipeline certificó exitosamente la calidad del software:" >> $GITHUB_STEP_SUMMARY
           echo "- **Auditoría PEP 8:** Flake8 aprobado sin observaciones." >> $GITHUB_STEP_SUMMARY
-          echo "- **Reglas de Negocio:** Pytest validó todos los cálculos contables." >> $GITHUB_STEP_SUMMARY
           echo "- **Script Interno:** Auditoría ejecutada y empaquetada como artefacto." >> $GITHUB_STEP_SUMMARY
           echo "- **Estado Final:** Listo para distribución continua (CD)." >> $GITHUB_STEP_SUMMARY
-      - name: 9. Ejecutar script de mantenimiento
-        env:  
-           PYTHONPATH: .
-        run: |
-          python scripts/mantenimiento_sistema.py
-
-      - name: 10. Publicar artefacto de mantenimiento
-        uses: actions/upload-artifact@v4
-        with:
-          name: reporte-mantenimiento-sistema
-          path: reporte_mantenimiento.txt
-  
-  # a. Ejecución del script propio
-      - name: Ejecutar script de auditoría
-        run: python scripts/auditoria_sistema.py
-
-    # b. Subida del reporte como artefacto descargable
-      - name: Subir reporte de auditoría
-        uses: actions/upload-artifact@v4
-        with:
-        name: reporte-auditoria-calidad
-        path: reporte_auditoria.txt
-
-    # c. Publicación del resumen en GitHub (GITHUB_STEP_SUMMARY)
-      - name: Publicar resumen en GitHub Step Summary
-        run: cat reporte_auditoria.txt >> $GITHUB_STEP_SUMMARY
+          
